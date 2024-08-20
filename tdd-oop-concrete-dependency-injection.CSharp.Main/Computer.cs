@@ -27,23 +27,21 @@ namespace tdd_oop_concrete_dependency_injection.CSharp.Main
             powerSupply.turnOn();
         }
 
-        public void installGame(string name)
+        public void installGame(Game game)
         {
-            Game game = new Game(name);
             this.installedGames.Add(game);
         }
 
-        public String playGame(string name)
+        public string playGame(Game game)
         {
-            foreach (Game g in this.installedGames)
+            if (this.installedGames.Contains(game))
             {
-                if (g.name.Equals(name))
-                {
-                    return g.start();
-                }
+                return game.start();
             }
-
-            return "Game not installed";
+            else
+            {
+                return "Game not installed";
+            }
         }
     }
 }
